@@ -1,0 +1,33 @@
+#!/bin/bash -e
+cd ${0%/*} || exit 1    # run from this directory
+
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+application=$(getApplication)
+
+for arg; do case $arg in
+    -parallel)          parallel=0;;
+    -ZND)               ZND=0;;
+    *)                  echo "Unknown option '$arg'."; exit 1;;
+esac; done
+
+runApplication blockMesh
+restore0Dir
+
+if [[ "$ZND" ]]; then
+    runApplication setZNDsolution
+else
+    # runApplication setFields
+	echo "No ZND"
+fi
+
+if [[ "$parallel" ]]; then
+    runApplication decomposePar
+    runParallel $application
+    runApplication reconstructPar
+else
+    runApplication $application
+fi
+
+# ----------------------------------------------------------------- end-of-file
