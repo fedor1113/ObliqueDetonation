@@ -1,0 +1,42 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  dev                                   |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      movingFrameDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+type    adaptive; // none, given, adaptive
+
+adaptiveFrame
+{
+    direction           (1 0 0);
+    fieldName           lambda;
+    meanValue           0.8;
+    valueFactor         10;     // for lambda - meanValue [m/s^2]
+    derivativeFactor    50;     // for dotLambda [m/s]
+}
+
+givenFrame
+{
+    Urel
+    {
+        type coded;
+        name exponentialRelaxation;
+
+        code
+        #{
+            return 6.80947*vector(1 - exp(-x/4), 0, 0);
+        #};
+    }
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
