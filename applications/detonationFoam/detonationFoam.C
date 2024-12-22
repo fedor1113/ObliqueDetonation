@@ -278,12 +278,15 @@ int main(int argc, char *argv[])
 
 		// --- Solve reaction
 		volScalarField reactionRate = k*pos0(T - T0)*exp(-rho*E/p);
+		// volScalarField reactionRate = k * pos0(T - T0)
+		// 	* exp(-E/(Foam::constant::thermodynamic::RR*T));
 		solve
 		(
 			fvm::ddt(rhoLambda)
 		  + fvc::div(phiLambdap)
 		  ==
-			rho*reactionRate - fvm::Sp(reactionRate, rhoLambda)
+//			rho*reactionRate - fvm::Sp(reactionRate, rhoLambda)
+			reactionRate * (rho - rhoLambda) * pos0(rho - rhoLambda)
 		);
 
 		lambda.ref() = rhoLambda()/rho();

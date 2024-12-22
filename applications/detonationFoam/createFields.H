@@ -10,6 +10,18 @@ psiThermo& thermo = pThermo();
 
 volScalarField& e = thermo.he();
 
+
+
+// const scalar molWeight0 = thermo.subDict("mixture").subDict("specie").lookupOrDefault<scalar>(
+//     "molWeight", 0.0);
+// // dimensionedScalar molWeight("molWeight", dimless, thermo);
+// Info << "Gas constant: "
+//      << Foam::constant::thermodynamic::RR / molWeight0
+//      << "\n"
+//      << endl;
+// dimensionedScalar molWeight("molWeight", dimMass/dimMoles, molWeight0);
+
+
 dimensionedScalar Sc("Sc", dimless, thermo);
 
 Info<< "Reading chemical properties\n" << endl;
