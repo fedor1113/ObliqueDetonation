@@ -29,16 +29,19 @@ mixture
 {
     specie
     {
-        // molWeight   8.3144626e3; // =R [kg/kmol]
+        molWeight   8.3144626e3; // =R [kg/kmol]
+        // molWeight   #eval{ 1./R.value() }; // =R [kg/kmol]
         // nMoles 1;
         // molWeight 29;
-        molWeight       11640.3;
+        // molWeight       11640.3;
+		// molWeight 1.0e3;
+		// molWeight 1.;
     }
     thermodynamics
     {
         // Cp 1005;
-        Cp          2.5;  // gamma=5/3
-        // Cp          6; // =gamma/(gamma-1)
+        // Cp          2.5;  // gamma=5/3
+        Cp          6; // =gamma/(gamma-1)
         Hf          0;
     }
     transport

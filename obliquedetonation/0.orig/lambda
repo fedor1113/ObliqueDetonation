@@ -40,7 +40,8 @@ boundaryField
 
     top
     {
-        type            symmetryPlane;
+        // type            symmetryPlane;
+        type            zeroGradient;
     }
 
     obstacle

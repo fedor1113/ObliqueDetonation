@@ -8,6 +8,7 @@ application=$(getApplication)
 
 for arg; do case $arg in
     -parallel)          parallel=0;;
+	-parallel_cont)     parallel_cont=0;;
     -ZND)               ZND=0;;
     *)                  echo "Unknown option '$arg'."; exit 1;;
 esac; done
@@ -23,7 +24,11 @@ else
 fi
 
 if [[ "$parallel" ]]; then
-    runApplication decomposePar
+	if [[ "$parallel_cont" ]]; then
+		echo "Continuing parallel computation"
+	else
+	    runApplication decomposePar
+	fi
     runParallel $application
     runApplication reconstructPar
 else

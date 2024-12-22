@@ -14,10 +14,17 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-// Q       50;     // specific heat release [J/kg]
-Q       0.;
-E       25;     // activation energy [J/kg]
-k       35.956; // rate constant [1/s]
+Q       50;     // specific heat release [J/kg]
+// Q       0.;
+// E       25;     // activation energy [J/kg]
+E 		5.;
+// E 		10.;
+// k       35.956; // rate constant [1/s]
+// k 		200.;
+// k 		12;
+k 		24.;
+// k       350.956; // rate constant [1/s]
+// k 		5;
 T0      1.2;
 
 // ************************************************************************* //

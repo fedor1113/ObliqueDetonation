@@ -37,22 +37,22 @@ laplacianSchemes
     default         Gauss linear corrected;
 }
 
-// interpolationSchemes
-// {
-//     default         linear;
-//     reconstruct(rho) vanLeer;
-//     reconstruct(U)  vanLeerV;
-//     reconstruct(T)  vanLeer;
-//     reconstruct(lambda)  vanLeer;
-// }
 interpolationSchemes
 {
     default         linear;
-    reconstruct(rho) vanAlbada;
-    reconstruct(U)  vanAlbadaV;
-    reconstruct(T)  vanAlbada;
-    reconstruct(lambda)  vanAlbada;
+    reconstruct(rho) vanLeer;
+    reconstruct(U)  vanLeerV;
+    reconstruct(T)  vanLeer;
+    reconstruct(lambda)  vanLeer;
 }
+// interpolationSchemes
+// {
+//     default         linear;
+//     reconstruct(rho) vanAlbada;
+//     reconstruct(U)  vanAlbadaV;
+//     reconstruct(T)  vanAlbada;
+//     reconstruct(lambda)  vanAlbada;
+// }
 
 snGradSchemes
 {

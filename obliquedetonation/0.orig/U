@@ -17,7 +17,8 @@ FoamFile
 dimensions      [0 1 -1 0 0 0 0];
 
 // internalField   uniform (0 0 0);
-internalField   uniform (5 0 0);
+// internalField   uniform (10.95445115 0 0);
+internalField 	uniform (17.527121840165314 0 0);
 
 
 boundaryField
@@ -25,7 +26,8 @@ boundaryField
     inlet
     {
         type            fixedValue;
-        value           uniform (5 0 0);
+        // value           uniform (10.95445115 0 0);
+        value           uniform (17.527121840165314 0 0);
         // value           uniform (2 0 0);
         // value uniform (363.02 0 0);
     }
@@ -42,7 +44,8 @@ boundaryField
 
     top
     {
-        type            symmetryPlane;
+        // type            symmetryPlane;
+        type            zeroGradient;
     }
 
     obstacle
