@@ -1,0 +1,73 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     |
+    \\  /    A nd           | Website:  https://openfoam.org
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      setFieldsDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// defaultFieldValues
+// (
+//     volScalarFieldValue alpha 0
+// );
+
+// defaultFieldValues
+// (
+// 	volVectorFieldValue U ( 0 0 0 )
+// 	volScalarFieldValue T 1.
+// 	volScalarFieldValue p 1.
+// 	volScalarFieldValue lambda 0.
+// );
+
+// setField
+// (
+//     "T", // temperature (p=1 -> 1/density field)
+//     #{
+//         // 1. + 3. * exp(-pos().x * pos().x)
+//         1. + 3. * e^(-pos().x * pos0(pos().x))
+//     }#
+// );
+
+defaultFieldValues
+(
+    volScalarFieldValue T 1.
+);
+
+expressions
+(
+    T
+    {
+        field   T;
+
+        dimensions [0 0 0 1 0 0 0];
+
+        constants
+        {
+        }
+
+        variables
+        (
+        );
+
+        // condition
+        // #{
+        // pos().x() > 0.
+        // #};
+
+        expression
+        #{
+            1. + 3. * exp(-pos().x() * pos().x())
+        #};
+    }
+);
+
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

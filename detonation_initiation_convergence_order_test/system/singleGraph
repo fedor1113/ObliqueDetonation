@@ -1,0 +1,34 @@
+// -*- C++ -*-
+
+// Sampling and I/O settings
+#includeEtc "caseDicts/postProcessing/graphs/sampleDict.cfg"
+
+type            sets;
+libs            (sampling);
+writeControl    writeTime;
+// interpolationScheme cellPoint;  // both cell-center and vertex values
+// interpolationScheme cell;  // only cell values are used
+interpolationScheme cellPointFace;
+setFormat       raw;
+fields          ( U p rho lambda );
+
+setConfig
+{
+    // type    midPoint;  // sampling point is the midpoint between 2 faces
+    type    face;
+    // axis    distance;  // x, y, z, xyz
+    axis    x;
+}
+
+sets
+{
+    line
+    {
+        $setConfig;
+        start (-1 0 0);
+        end   (13 0 0);
+    }
+}
+
+
+// ************************************************************************* //
